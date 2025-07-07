@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>CSV Search App</title>
+</head>
+<body>
+    <h1>Search Google Sheet CSV</h1>
+    <form method="post">
+        <input type="text" name="search_term" placeholder="Enter search term" value="{{ search_term }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results is not none %}
+        <h2>Results:</h2>
+        <table border="1">
+            <tr>
+                {% for col in results.columns %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in results.values %}
+                <tr>
+                    {% for val in row %}
+                        <td>{{ val }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
